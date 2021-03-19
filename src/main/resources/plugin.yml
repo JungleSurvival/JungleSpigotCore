@@ -1,0 +1,15 @@
+name: JungleSpigotCore
+version: ${project.version}
+main: pl.wolny.junglespigotcore.JungleSpigotCore
+api-version: 1.16
+authors: [WcaleNieWolny]
+permissions:
+  junglesurvival.adminlog.gm:
+    description: Allow for adminlog to see gm command
+    default: op
+  junglesurvival.adminlog.tp:
+    description: See when someone tp
+    default: op
+  junglesurvival.admin:
+    description: Just admin perms
+    default: op
