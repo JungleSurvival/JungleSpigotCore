@@ -8,6 +8,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import pl.wolny.junglespigotcore.utils.Logger;
 import pl.wolny.junglespigotcore.utils.warn.WarnManager;
 
 public class WarnCmd implements CommandExecutor {
@@ -32,11 +33,14 @@ public class WarnCmd implements CommandExecutor {
             return false;
         }
         StringBuilder sb = new StringBuilder();
-        for (int i = 2; i < args.length; i++) {
+        for (int i = 1; i < args.length; i++) {
             sb.append(args[i]).append(" ");
         }
         String reason = sb.toString().trim();
         WarnManager.addWarn(toWarn, reason);
+        player.sendMessage(ChatColor.translateAlternateColorCodes('^', "^aOstrzegasz gracza: ^f" + toWarn.getName() + " ^aZa:^f " + reason + "^a."));
+        toWarn.sendMessage(ChatColor.translateAlternateColorCodes('^', "^aZostałeś ostrzeżony za: ^f" + reason + "^a."));
+        Logger.log("Admin: " + player.getName() + " Ostrzega: " + toWarn.getName() + " za: " + reason);
         return false;
     }
 }
