@@ -3,6 +3,7 @@ package pl.wolny.junglespigotcore;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+import pl.wolny.junglespigotcore.cmds.WarnCmd;
 import pl.wolny.junglespigotcore.utils.config.ConfigFile;
 import pl.wolny.junglespigotcore.utils.warn.WarnFile;
 import sun.rmi.runtime.Log;
@@ -21,6 +22,7 @@ public final class JungleSpigotCore extends JavaPlugin {
             Bukkit.getPluginManager().registerEvents(new TeleportEvent(), this);
             Bukkit.getPluginManager().registerEvents(new GamemodeChange(), this);
         }
+        this.getCommand("warn").setExecutor(new WarnCmd());
     }
 
     @Override
