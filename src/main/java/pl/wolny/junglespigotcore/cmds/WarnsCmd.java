@@ -1,5 +1,6 @@
 package pl.wolny.junglespigotcore.cmds;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -15,14 +16,14 @@ import java.util.Date;
 import java.util.List;
 
 public class WarnsCmd implements CommandExecutor {
-    private void GenWarns(Player player, Player pl2){
-        List<WarnObject> warns = WarnManager.getWarns(player.getName());
+    private void genWarns(String player, Player pl2){
+        List<WarnObject> warns = WarnManager.getWarns(player);
         Collections.reverse(warns);
         if(warns.size() == 0){
-            pl2.sendMessage(ChatColor.translateAlternateColorCodes('+', "+aGracz +f" + player.getName() + " +anie ma warnów!"));
+            pl2.sendMessage(ChatColor.translateAlternateColorCodes('+', "+aGracz +f" + player + " +anie ma warnów!"));
             return;
         }
-        pl2.sendMessage(ChatColor.translateAlternateColorCodes('^', "^9>>> ^aOstrzezenia gracza " + player.getName() + "^a:"));
+        pl2.sendMessage(ChatColor.translateAlternateColorCodes('^', "^9>>> ^aOstrzezenia gracza " + player + "^a:"));
         int i = 1;
         for (WarnObject warn: warns) {
             pl2.sendMessage(ChatColor.translateAlternateColorCodes('^', "^9>>> ^aWarn o id " + i + "^a:"));
@@ -34,6 +35,20 @@ public class WarnsCmd implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+        if(!(sender instanceof Player)){
+            Bukkit.getLogger().info("Nice try :)");
+            return false;
+        }
+        Player player = (Player) sender;
+        if(args.length < 1){
+            genWarns(player.getName(), player);
+            return true;
+        }
+        if(!(player.hasPermission("junglesurvival.warns"))){
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cNie możesz tego zrobić!"));
+            return false;
+        }
+        genWarns(args[0], player);
         return false;
     }
 }

@@ -16,6 +16,13 @@ permissions:
   junglesurvival.warn:
     description: some text here
     default: op
+  junglesurvival.warns:
+    description: some text here
+    default: op
 commands:
   warn:
     description: warn cmd
+  warns:
+    description: warns cmd
+  admin:
+    description: admin cmd

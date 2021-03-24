@@ -23,7 +23,7 @@ public class WarnCmd implements CommandExecutor {
             player.sendMessage(ChatColor.translateAlternateColorCodes('^', "^cNie możesz tego zrobić!"));
             return false;
         }
-        if(args.length < 1){
+        if(args.length < 2){
             player.sendMessage(ChatColor.translateAlternateColorCodes('^', "^cZłe użycie!"));
             return false;
         }
@@ -41,6 +41,7 @@ public class WarnCmd implements CommandExecutor {
         player.sendMessage(ChatColor.translateAlternateColorCodes('^', "^aOstrzegasz gracza: ^f" + toWarn.getName() + " ^aZa:^f " + reason + "^a."));
         toWarn.sendMessage(ChatColor.translateAlternateColorCodes('^', "^aZostałeś ostrzeżony za: ^f" + reason + "^a."));
         Logger.log("Admin: " + player.getName() + " Ostrzega: " + toWarn.getName() + " za: " + reason);
+        WarnManager.autoWarn(WarnManager.getWarns(toWarn.getName()).size(), toWarn);
         return false;
     }
 }

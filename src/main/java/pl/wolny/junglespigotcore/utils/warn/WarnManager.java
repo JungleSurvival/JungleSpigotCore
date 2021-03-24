@@ -1,5 +1,6 @@
 package pl.wolny.junglespigotcore.utils.warn;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
@@ -28,8 +29,24 @@ public class WarnManager {
         if(PlayerWarns.size() == 0){return new ArrayList<WarnObject>();}
         List WarnsToReturn = new ArrayList<WarnObject>();
         for (String WarnID: PlayerWarns) {
-            WarnsToReturn.add(new WarnObject(PlayerName, WarnID, warnYml.getString(PlayerName + ".reason"), new Date(warnYml.getLong(PlayerName + ".date"))));
+            WarnsToReturn.add(new WarnObject(PlayerName, WarnID, warnYml.getString(WarnID + ".reason"), new Date(warnYml.getLong(WarnID + ".date"))));
         }
         return WarnsToReturn;
+    }
+    public static void autoWarn(int warns, Player player){
+        switch (warns){
+            case 2:
+                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tempban " + player.getName() + " 1h Dostałeś swoje 2 upomnienie!");
+                break;
+            case 3:
+                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tempban " + player.getName() + " 24h Dostałeś swoje 3 upomnienie!");
+                break;
+            case 4:
+                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tempban " + player.getName() + " 3d Dostałeś swoje 4 upomnienie!");
+                break;
+            case 5:
+                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "ban " + player.getName() + " Dostałeś swoje 5 upomnienie!");
+                break;
+        }
     }
 }
