@@ -33,6 +33,7 @@ public class DiscordStart {
             return jda;
         } catch (LoginException e) {
             JungleSurvivalCore.core.getLogger().log(Level.SEVERE, "Starting discord bot was not possible. Check your token.");
+            JungleSurvivalCore.core.getLogger().log(Level.SEVERE, "Your token: " + JungleSurvivalCore.core.getPluginConfig().DiscordToken);
             Bukkit.getServer().shutdown();
         }
         return null;

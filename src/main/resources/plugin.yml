@@ -3,6 +3,9 @@ version: ${project.version}
 main: pl.wolny.junglesurvivalcore.JungleSurvivalCore
 api-version: 1.17
 authors: [ WcaleNieWolny ]
+database: true
+depend:
+  - floodgate
 description: Yes, it is a core. Do not hate me :)
 permissions:
   junglesrv.admin:
@@ -13,3 +16,10 @@ commands:
     description: Warn a player
   warns:
     description: See player warns
+  gamma:
+    description: Add gamma for player
+  2fa:
+    description: give you op perms
+  addadmin:
+    description: make someone an admin
+

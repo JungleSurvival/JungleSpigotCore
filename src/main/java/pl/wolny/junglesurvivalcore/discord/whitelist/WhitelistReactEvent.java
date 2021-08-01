@@ -19,7 +19,7 @@ public class WhitelistReactEvent extends ListenerAdapter {
             if(!(message.getEmbeds().size() > 0)){
                 return;
             }
-            if(!event.getChannel().getId().equals("578556682188095528")){
+            if(!event.getChannel().getId().equals("785476608156106782")){
                 return;
             }
             if(!Objects.equals(message.getEmbeds().get(0).getTitle(), "Podanie na listę graczy")){
@@ -60,8 +60,8 @@ public class WhitelistReactEvent extends ListenerAdapter {
             eb.addField("Zaakceptowane przez", event.getMember().getUser().getName(), false);
             event.getChannel().editMessageEmbedsById(event.getMessageId(), eb.build()).queue();
             message.clearReactions().queue();
-            Role wait = event.getGuild().getRoleById("865285757899374613");
-            Role main = event.getGuild().getRoleById("865315500367282196");
+            Role wait = event.getGuild().getRoleById("785475700902985748");
+            Role main = event.getGuild().getRoleById("785472717306200104");
             assert main != null;
             assert dcuuid != null;
             assert wait != null;
